@@ -1,13 +1,13 @@
-import { applyMiddleware, createStore, compose } from 'redux'
-import thunk from 'redux-thunk'
+import { createStore, compose } from 'redux'
 
+import applyMiddleware from './middleware'
 import placesReducers from './reducers/places_reducers'
 
-const initialState = {}
+const initialState = {
+  places: [],
+}
 
-const middlewares = [thunk]
-
-const composedEnhancers = compose(applyMiddleware(...middlewares))
+const composedEnhancers = compose(applyMiddleware)
 
 const store = createStore(placesReducers, initialState, composedEnhancers)
 
