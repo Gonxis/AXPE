@@ -61,7 +61,26 @@ yarn start
 - React
 - Redux
 - google-map-react
-- react-testing-library
-- cypress
+- ~~react-testing-library~~
+- ~~cypress~~
 - prettier
 - eslint
+
+## Ejercicio 1
+
+### Respuesta a la pregunta 1
+
+La clase RegisteredUser utiliza la clase MultimediaContent (mediante el método
+getTotal) que no tiene directamente asociada. Cualquier cambio a la lógica de
+los contenidos multimedia también afectaría al código de RegisteredUser, cosa
+que no debería.
+
+Esta misma clase RegisteredUser está violando el Open/Close Principle de SOLID
+(Abierto para extensiones, pero cerrado para modificaciones). Los condicionales
+que está usando, si se ampliaran los servicios en Service, RegisteredUser
+también tendría que modificarse, añadiendo otro condicional para contemplar los
+nuevos cambios.
+
+### Respuesta a la pregunta 2
+
+[Aquí](pseudocodigo_solution.js) podrás encontrar el pseudocódigo implementado.
