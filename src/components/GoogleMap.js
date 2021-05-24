@@ -23,24 +23,13 @@ const GoogleMap = ({
 )
 
 GoogleMap.propTypes = {
-  children: PropTypes.shape({}),
+  children: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   defaultCenter: PropTypes.shape({
     lat: PropTypes.number.isRequired,
     lng: PropTypes.number.isRequired,
   }).isRequired,
   defaultZoom: PropTypes.number.isRequired,
   onGoogleApiLoaded: PropTypes.func.isRequired,
-}
-
-GoogleMap.defaultProps = {
-  children: PropTypes.shape({
-    SearchBox: PropTypes.shape({
-      type: PropTypes.string,
-      placeHolder: PropTypes.string,
-      onChange: PropTypes.func,
-      value: PropTypes.string,
-    }),
-  }),
 }
 
 export default GoogleMap

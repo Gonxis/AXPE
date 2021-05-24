@@ -3,7 +3,6 @@ import React, { useCallback, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 import placesActions from '../redux/actions/places_actions'
-// import placesActions from '../redux/actions/places_actions'
 
 const SearchBox = ({ map, mapApi, onPlacesChanged }) => {
   const dispatch = useDispatch()
@@ -15,7 +14,6 @@ const SearchBox = ({ map, mapApi, onPlacesChanged }) => {
       const selected = searchBox.current.getPlaces()
       const { 0: place } = selected
       dispatch(placesActions.savePlace(place))
-      onPlacesChanged(selected)
 
       if (!place.geometry) return
       if (place.geometry.viewport) {
@@ -81,7 +79,7 @@ SearchBox.propTypes = {
       clearInstanceListeners: PropTypes.func.isRequired,
     }).isRequired,
   }).isRequired,
-  onPlacesChanged: PropTypes.func.isRequired,
+  onPlacesChanged: PropTypes.bool.isRequired,
 }
 
 export default SearchBox
