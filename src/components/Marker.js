@@ -1,21 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-const Marker = ({ text }) => (
-  <div
-    style={{
-      position: 'absolute',
-      top: '50%',
-      left: '50%',
-      width: '18px',
-      height: '18px',
-      backgroundColor: '#000',
-      border: '2px solid #fff',
-      borderRadius: '100%',
-    }}
-    alt={text}
-  />
-)
+const Circle = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background-color: #000;
+  boder: 2px solid #fff;
+  border-radius: 50%;
+`
+
+const Marker = ({ text }) => <Circle alt={text} />
 
 Marker.propTypes = {
   text: PropTypes.string.isRequired,

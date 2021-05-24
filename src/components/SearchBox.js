@@ -2,7 +2,19 @@
 import React, { useCallback, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
+import styled from 'styled-components'
 import placesActions from '../redux/actions/places_actions'
+
+const Input = styled.input`
+  position: absolute;
+  top: -35%;
+  left: -10%;
+  padding: 7px 15px 7px 15px;
+  outline: none;
+  border-color: transparent;
+  box-shadow: 2px 3px #f1f1f1;
+  width: 250px;
+`
 
 const SearchBox = ({ map, mapApi, onPlacesChanged }) => {
   const dispatch = useDispatch()
@@ -47,20 +59,11 @@ const SearchBox = ({ map, mapApi, onPlacesChanged }) => {
   }, [mapApi, handleOnPlacesChanged])
 
   return (
-    <input
+    <Input
       ref={searchInput}
       type='text'
       placeholder='Enter a location'
       onFocus={clearSearchBox}
-      style={{
-        padding: '7px 15px 7px 15px',
-        outline: 'none',
-        borderColor: 'transparent',
-        boxShadow: '2px 3px #f1f1f1',
-        position: 'relative',
-        width: 250,
-        top: '-40%',
-      }}
     />
   )
 }
