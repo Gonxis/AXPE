@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import GoogleMap from './components/GoogleMap'
+import SearchBox from './components/SearchBox'
+import placesActions from './redux/actions/places_actions'
 
 const Wrapper = styled.main`
   width: 100%;
@@ -8,15 +11,22 @@ const Wrapper = styled.main`
 `
 
 const App = () => {
-  const [, setmapApiLoaded] = useState(false)
-  const [, setmapInstance] = useState()
-  const [, setmapApi] = useState()
+  const dispatch = useDispatch()
+
+  const [mapApiLoaded, setmapApiLoaded] = useState(false)
+  const [mapInstance, setmapInstance] = useState()
+  const [mapApi, setmapApi] = useState()
 
   const apiHasLoaded = (map, maps) => {
-    setmapApiLoaded(true)
-    setmapInstance(map)
     setmapApi(maps)
+    setmapInstance(map)
+    setmapApiLoaded(true)
   }
+
+  const getPlaces = () => {
+    dispatch(placesActions.getAllPlaces())
+  }
+
   return (
     <Wrapper>
       <GoogleMap
@@ -24,7 +34,15 @@ const App = () => {
         defaultZoom={6}
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={({ map, maps }) => apiHasLoaded(map, maps)}
-      />
+      >
+        {mapApiLoaded && (
+          <SearchBox
+            map={mapInstance}
+            mapApi={mapApi}
+            onPlacesChanged={getPlaces}
+          />
+        )}
+      </GoogleMap>
     </Wrapper>
   )
 }
