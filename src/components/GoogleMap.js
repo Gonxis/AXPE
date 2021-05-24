@@ -23,7 +23,7 @@ const GoogleMap = ({
 )
 
 GoogleMap.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  children: PropTypes.oneOfType([PropTypes.object]).isRequired,
   defaultCenter: PropTypes.shape({
     lat: PropTypes.number.isRequired,
     lng: PropTypes.number.isRequired,
